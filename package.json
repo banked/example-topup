@@ -1,0 +1,25 @@
+{
+  "name": "topup-example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "npm run build:css && npm run start",
+    "build:css": "postcss ./public/stylesheets/style.css -o public/stylesheets/topup.css"
+  },
+  "dependencies": {
+    "@banked/node": "0.0.8",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "postcss-cli": "^7.1.0",
+    "tailwindcss": "^1.2.0",
+    "dotenv": "^8.2.0"
+  }
+}

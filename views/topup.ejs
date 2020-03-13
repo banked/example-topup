@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Topupify</title>
+    <link rel='stylesheet' href='/stylesheets/topup.css' />
+  </head>
+  <body>
+    <div class="bg-gray-200 h-screen text-gray-700 pt-8">
+      <div class="max-w-4xl mx-auto overflow-hidden pb-8 text-gray-600 clearfix">
+        <div class="float-left">
+          <a href="/account/" class="underline hover:no-underline">Topupify</a>
+        </div>
+        <div class="float-right">
+          <a href="/logout" class="underline hover:no-underline">Logout</a>
+        </div>
+        <div class="float-right mr-5">
+          Welcome, <%= user.name %>
+        </div>
+      </div>
+      <div class="max-w-4xl mx-auto rounded overflow-hidden shadow-lg bg-white p-10">
+        <% if (flash) { %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto mb-3" role="alert">
+            <span class="block sm:inline"><%= flash %></span>
+          </div>
+        <% } %>
+        <form action="/account/top-up" method="POST">
+          <div class="clearfix">
+            <div class="float-left">
+              <div class="text-sm text-gray-500 mb-3">
+                Amount to top-up
+              </div>
+              <div class="text-3xl relative">
+                <span class="absolute mt-1 ml-3 text-gray-600">£</span>
+                <input class="shadow appearance-none border rounded w-full py-2 pr-3 pl-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline currency" id="amount" type="number" name="amount" placeholder="0">
+              </div>
+            </div>
+            <div class="float-left mt-6">
+              <input type="submit" class="bg-gray-900 hover:bg-gray-800 text-white font-bold pt-4 pb-3 px-10 border-b-4 border-black hover:border-gray-900 rounded mt-2 ml-5" type="button" value="Top-up with Banked :" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="max-w-4xl mx-auto overflow-hidden pb-8 mt-10 text-gray-600 clearfix">
+        Banked.com top-up example, the <a href="https://github.com/banked/topup-example" class="underline hover:no-underline">source code</a> is released under an MIT license
+      </div>
+    </div>
+  </body>
+</html>
