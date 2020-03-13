@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "npm run build:css && npm run start",
-    "build:css": "postcss ./public/stylesheets/style.css -o public/stylesheets/topup.css"
+    "build:css": "postcss ./public/stylesheets/style.css -o public/stylesheets/topup.css",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@banked/node": "0.0.8",
@@ -18,8 +19,14 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "postcss-cli": "^7.1.0",
-    "tailwindcss": "^1.2.0",
-    "dotenv": "^8.2.0"
+    "tailwindcss": "^1.2.0"
   }
 }
