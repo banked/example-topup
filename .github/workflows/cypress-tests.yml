@@ -12,6 +12,15 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm run ci
+        env:
+          BANKED_API_KEY: ${{ secrets.BANKED_API_KEY }}
+          BANKED_API_SECRET: ${{ secrets.BANKED_API_SECRET }}
+          BASE_URL: "http://localhost:3000"
+          PAYEE_NAME: "Topupify Ltd."
+          ACCOUNT_NUMBER: "00000000"
+          SORT_CODE: "000000"
+          SIGNATURE_KEY: ${{ secrets.SIGNATURE_KEY }}
+          CLEAR_TOKEN: ${{ secrets.CLEAR_TOKEN }}
       - uses: cypress-io/github-action@v1
         with:
           browser: chrome
