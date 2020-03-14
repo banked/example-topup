@@ -47,8 +47,9 @@ exports.findByUserID = (userID) => {
 }
 
 exports.updateStateByID = (topupID, state) => {
-  topups[topupID - 1].state = state
-  return Promise.resolve(topups[topupID - 1])
+  const topup = topups[topupID - 1]
+  if (topup) topup.state = state
+  return Promise.resolve(topup)
 }
 
 exports.clear = () => {

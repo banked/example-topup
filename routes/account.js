@@ -12,7 +12,8 @@ router.get('/', async function (req, res, next) {
       total: topups.reduce((a, b) => {
         return a + b.amount
       }, 0),
-      user
+      user,
+      topupState: req.query.topup || ''
     })
   } catch (e) {
     console.log(e)
@@ -42,16 +43,21 @@ router.post('/top-up', async function (req, res, next) {
         flash: 'You need to indicate a amount of money to top up greater than zero'
       })
     } else {
-      const topup = await Topups.create({
-        amount: req.body.amount * 100,
-        userID: user.id,
-        currency: 'GBP',
-        payer: {
-          name: user.name,
-          email: user.email
-        }
-      })
-      res.redirect(topup.redirect_url)
+      try {
+        const topup = await Topups.create({
+          amount: req.body.amount * 100,
+          userID: user.id,
+          currency: 'GBP',
+          payer: {
+            name: user.name,
+            email: user.email
+          }
+        })
+        res.redirect(topup.redirect_url)
+      } catch(e) {
+        console.log(e)
+        res.redirect('/account?topup=error')
+      }
     }
     res.render('topup', {
       user
