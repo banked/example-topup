@@ -4,7 +4,9 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 var indexRouter = require('./routes/index')
 var registerRouter = require('./routes/register')
