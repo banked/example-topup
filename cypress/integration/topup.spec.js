@@ -31,6 +31,7 @@ describe('Registration', function () {
     cy.contains('Mock Bank').click()
     cy.wait(500)
     cy.get('.loading__redirect-link').click()
+    cy.wait(500)
     cy.contains('Authorise').click()
 
     cy.url().should('include', '/account')

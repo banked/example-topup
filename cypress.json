@@ -1,3 +1,6 @@
 {
-  "chromeWebSecurity": false 
+  "chromeWebSecurity": false,
+  "fixturesFolder": false,
+  "supportFile": false,
+  "pluginsFile": false
 }
