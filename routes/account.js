@@ -54,7 +54,7 @@ router.post('/top-up', async function (req, res, next) {
           }
         })
         res.redirect(topup.redirect_url)
-      } catch(e) {
+      } catch (e) {
         console.log(e)
         res.redirect('/account?topup=error')
       }

@@ -12,7 +12,7 @@ router.get('/', async function (req, res, next) {
       await Users.deleteBySessionID(req.cookies.topupSessionCookie)
     }
     res.redirect('/')
-  } catch(e) {
+  } catch (e) {
     res.sendStatus(500)
   }
 })
