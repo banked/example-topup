@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "start": "npm run build:css && node ./bin/www",
-    "build:css": "postcss ./public/stylesheets/style.css -o public/stylesheets/topup.css",
+    "build:css": "./node_modules/.bin/postcss ./public/stylesheets/style.css -o public/stylesheets/topup.css",
     "lint": "eslint .",
     "cypress": "cypress open"
+  },
+  "engines": {
+    "node": "13.x"
   },
   "dependencies": {
     "@banked/node": "0.0.9",
