@@ -1,5 +1,4 @@
-describe('Registration', function() {
-
+describe('Registration', function () {
   beforeEach(() => {
     cy.request('http://localhost:3000/clear?token=00000')
 
@@ -22,7 +21,7 @@ describe('Registration', function() {
     cy.url().should('include', '/account/top-up')
   })
 
-  it('should allow topping up', function() {
+  it('should allow topping up', function () {
     cy.get('#amount')
       .type('22')
       .should('have.value', '22')
@@ -38,12 +37,11 @@ describe('Registration', function() {
     cy.contains('£22.00').should('be.visible')
   })
 
-  it('should show an error if zero money is topped up', function() {
+  it('should show an error if zero money is topped up', function () {
     cy.get('#amount')
       .type('0')
       .should('have.value', '0')
     cy.contains('Top-up with Banked :').click()
     cy.contains('You need to indicate a amount of money to top up greater than zero').should('be.visible')
   })
-
 })

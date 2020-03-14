@@ -2,7 +2,8 @@ module.exports = {
   env: {
     commonjs: true,
     es6: true,
-    node: true
+    node: true,
+    'cypress/globals': true
   },
   extends: [
     'standard'
@@ -16,5 +17,8 @@ module.exports = {
   },
   rules: {
     'no-async-promise-executor': 'off'
-  }
+  },
+  plugins: [
+    'cypress'
+  ]
 }

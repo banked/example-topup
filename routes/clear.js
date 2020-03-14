@@ -17,7 +17,7 @@ router.get('/', async function (req, res, next) {
     await Topups.clear()
     await Users.clear()
     res.sendStatus(200)
-  } catch(e) {
+  } catch (e) {
     res.sendStatus(500)
   }
 })

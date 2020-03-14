@@ -57,6 +57,6 @@ exports.updateStateByID = (topupID, state) => {
 }
 
 exports.clear = () => {
-  topups = [];
+  topups = []
   return Promise.resolve()
 }

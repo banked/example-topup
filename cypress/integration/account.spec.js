@@ -1,5 +1,4 @@
-describe('Registration', function() {
-
+describe('Registration', function () {
   beforeEach(() => {
     cy.visit('http://localhost:3000/register')
     cy.get('.name-field')
@@ -17,31 +16,31 @@ describe('Registration', function() {
     cy.url().should('include', '/account')
   })
 
-  it('should show no topups in new account', function() {
+  it('should show no topups in new account', function () {
     cy.contains("You haven't made any topups!").should('be.visible')
-    cy.contains("£0.00").should('be.visible')
+    cy.contains('£0.00').should('be.visible')
   })
 
-  it('should welcome with the account name', function() {
+  it('should welcome with the account name', function () {
     cy.get('#welcome-message').should(($div) => {
-      expect($div.text().trim()).equal('Welcome, Bob Hoskins');
-    });
+      expect($div.text().trim()).equal('Welcome, Bob Hoskins')
+    })
   })
 
-  it('should show the top-up button', function() {
+  it('should show the top-up button', function () {
     cy.contains('Top-up account').should('be.visible')
   })
 
-  it('should show the demo notice', function() {
+  it('should show the demo notice', function () {
     cy.contains('This is a demo and does not involve real money').should('be.visible')
   })
 
-  it('should show demo footer', function() {
+  it('should show demo footer', function () {
     cy.contains('Banked.com top-up example, the source code is released under an MIT license').should('be.visible')
     cy.get('.footer-link').should('have.attr', 'href').and('include', 'github.com/banked/example-topup')
   })
 
-  it('should allow logout', function() {
+  it('should allow logout', function () {
     cy.contains('Logout').click()
     cy.url().should('include', '/')
     cy.contains('Create a free account').should('be.visible')
@@ -49,11 +48,10 @@ describe('Registration', function() {
     cy.url().should('include', '/')
   })
 
-  it('should have a header link that routes to /account', function() {
+  it('should have a header link that routes to /account', function () {
     cy.contains('Top-up account').click()
     cy.url().should('include', '/account/top-up')
     cy.contains('Topupify').click()
     cy.url().should('include', '/account/')
   })
-
 })
