@@ -1,1 +1,3 @@
-* Webhook verification
+* Github Actions CI
+* heroku setup
+* Github CD for app into Heroku
