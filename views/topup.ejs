@@ -3,9 +3,27 @@
   <head>
     <title>Topupify</title>
     <link rel='stylesheet' href='/stylesheets/topup.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @media (min-width: 320px) and (max-width: 1024px) {
+        .mobile-pad {
+          padding: 35px 20px 20px;
+        }
+      }
+
+      @media (min-width: 320px) and (max-width: 1024px) and (orientation: portrait) {
+        .mobile-button {
+          margin-left: 0;
+          width: 100%;
+        }
+        .mobile-button-spacing {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <div class="bg-gray-200 h-screen text-gray-700 pt-8">
+  <body class="bg-gray-200">
+    <div class="bg-gray-200 h-screen text-gray-700 pt-8 mobile-pad">
       <div class="max-w-4xl mx-auto overflow-hidden pb-8 text-gray-600 clearfix">
         <div class="float-left">
           <a href="/account/" class="underline hover:no-underline">Topupify</a>
@@ -34,8 +52,8 @@
                 <input class="shadow appearance-none border rounded w-full py-2 pr-3 pl-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline currency" id="amount" type="number" name="amount" placeholder="0">
               </div>
             </div>
-            <div class="float-left mt-6">
-              <input type="submit" class="bg-gray-900 hover:bg-gray-800 text-white font-bold pt-4 pb-3 px-10 border-b-4 border-black hover:border-gray-900 rounded mt-2 ml-5" type="button" value="Top-up with Banked :" />
+            <div class="float-left mt-6 mobile-button-spacing">
+              <input type="submit" class="bg-gray-900 hover:bg-gray-800 text-white font-bold pt-4 pb-3 px-10 border-b-4 border-black hover:border-gray-900 rounded mt-2 ml-5 mobile-button" type="button" value="Top-up with Banked :" />
             </div>
           </div>
         </form>

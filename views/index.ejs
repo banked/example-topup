@@ -3,11 +3,19 @@
   <head>
     <title>Topupify</title>
     <link rel='stylesheet' href='/stylesheets/topup.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @media (min-width: 320px) and (max-width: 1024px) {
+        .strapline {
+          font-size: 14px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="flex content-center flex-wrap bg-gray-200 h-screen text-gray-700">
       <h1 class="w-screen text-center text-3xl">Welcome to Topupify</h1>
-      <p class="w-screen text-center">Create a top-up an account to save and buy widgets</p>
+      <p class="w-screen text-center strapline">Create a top-up an account to save and buy widgets</p>
       <a href="/register" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mx-auto mt-3">Create a free account</a>
     </div>
   </body>

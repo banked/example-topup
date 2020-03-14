@@ -3,9 +3,23 @@
   <head>
     <title>Topupify</title>
     <link rel='stylesheet' href='/stylesheets/topup.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @media (min-width: 320px) and (max-width: 1024px) {
+        .mobile-pad {
+          padding: 35px 20px 20px;
+        }
+      }
+      @media (min-width: 320px) and (max-width: 414px) and (orientation: portrait) {
+        .mobile-date {
+          float: left;
+          margin-top: 5px;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <div class="bg-gray-200 h-screen text-gray-700 pt-8">
+  <body class="bg-gray-200">
+    <div class="bg-gray-200 h-screen text-gray-700 pt-8 mobile-pad">
       <div class="max-w-4xl mx-auto overflow-hidden pb-8 text-gray-600 clearfix">
         <div class="float-left">
           <a href="/account/" class="underline hover:no-underline">Topupify</a>
@@ -52,7 +66,7 @@
               <div class="float-left font-bold">
                 <%= (topup.amount / 100).toLocaleString('en-GB', { style: 'currency', currency: topup.currency }) %> 
               </div>
-              <div class="float-right text-gray-500">
+              <div class="float-right text-gray-500 mobile-date">
                 <%= (new Date(topup.created_at)).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' }) %>
               </div>
             </div>
