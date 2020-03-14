@@ -11,6 +11,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run lint
+      - run: npm run ci
       - uses: cypress-io/github-action@v1
         with:
           browser: chrome
