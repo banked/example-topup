@@ -8,7 +8,9 @@ router.get('/', async function (req, res, next) {
   if (!token) {
     res.sendStatus(400)
   }
-  if (token !== process.env.CLEAR_TOKEN) {
+  if (process.env.NODE_ENV === 'production' && token !== process.env.CLEAR_TOKEN) {
+    res.sendStatus(403)
+  } else if (process.env.NODE_ENV !== 'production' && token !== '00000') {
     res.sendStatus(403)
   }
   try {

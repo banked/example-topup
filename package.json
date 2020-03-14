@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev": "npm run build:css && npm run start",
     "build:css": "postcss ./public/stylesheets/style.css -o public/stylesheets/topup.css",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@banked/node": "0.0.8",
@@ -27,6 +28,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "postcss-cli": "^7.1.0",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "cypress": "^4.1.0"
   }
 }
