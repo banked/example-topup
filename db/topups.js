@@ -55,3 +55,8 @@ exports.clear = () => {
   topups = []
   return Promise.resolve()
 }
+
+exports.deleteByUserID = (userID) => {
+  topups = topups.filter((topup) => topup.userID !== userID)
+  return Promise.resolve()
+}
