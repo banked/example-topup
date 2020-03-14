@@ -38,3 +38,8 @@ exports.deleteBySessionID = (sessionID) => {
   users = users.filter((user) => user.sessionID !== sessionID)
   return Promise.resolve()
 }
+
+exports.clear = () => {
+  users = []
+  return Promise.resolve()
+}

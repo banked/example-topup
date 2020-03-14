@@ -12,6 +12,7 @@ var accountRouter = require('./routes/account')
 var logoutRouter = require('./routes/logout')
 var callbackRouter = require('./routes/callback')
 var webhookkRouter = require('./routes/webhook')
+var clearRouter = require('./routes/clear')
 
 var app = express()
 
@@ -32,6 +33,7 @@ app.use('/logout', logoutRouter)
 app.use('/success', callbackRouter.success)
 app.use('/error', callbackRouter.error)
 app.use('/webhook', webhookkRouter)
+app.use('/clear', clearRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

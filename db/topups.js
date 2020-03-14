@@ -45,17 +45,18 @@ exports.create = async (topup) => {
 }
 
 exports.findByUserID = (userID) => {
-  return new Promise((resolve) => {
-    const result = topups.filter((topup) => {
-      return topup.userID === userID
-    })
-    resolve(result || [])
+  const result = topups.filter((topup) => {
+    return topup.userID === userID
   })
+  return Promise.resolve(result || [])
 }
 
 exports.updateStateByID = (topupID, state) => {
-  return new Promise((resolve) => {
-    topups[topupID - 1].state = state
-    resolve(topups[topupID - 1])
-  })
+  topups[topupID - 1].state = state
+  return Promise.resolve(topups[topupID - 1])
+}
+
+exports.clear = () => {
+  topups = [];
+  return Promise.resolve()
 }
