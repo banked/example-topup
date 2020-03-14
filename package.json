@@ -10,7 +10,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
-    "@banked/node": "0.0.8",
+    "@banked/node": "0.0.9",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
