@@ -1,4 +1,4 @@
-describe('Registration', function () {
+describe('Account page', function () {
   beforeEach(() => {
     cy.visit('http://localhost:3000/register')
     cy.get('.name-field')

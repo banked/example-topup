@@ -1,4 +1,4 @@
-describe('Registration', function () {
+describe('Topup', function () {
   beforeEach(() => {
     cy.request('http://localhost:3000/clear?token=00000')
 
