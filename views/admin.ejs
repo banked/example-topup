@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Topupify</title>
+    <link rel='stylesheet' href='/stylesheets/topup.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @media (min-width: 320px) and (max-width: 1024px) {
+        .mobile-pad {
+          padding: 35px 20px 20px;
+        }
+      }
+      @media (min-width: 320px) and (max-width: 414px) and (orientation: portrait) {
+        .mobile-date {
+          float: left;
+          margin-top: 5px;
+        }
+        .top-upmobile {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-200">
+    <div class="bg-gray-200 h-screen text-gray-700 pt-8 mobile-pad">
+      <div class="max-w-4xl mx-auto overflow-hidden pb-8 text-gray-600 clearfix">
+        <div class="max-w-4xl mx-auto overflow-hidden pb-8 text-gray-600 clearfix">
+          <div class="float-left">
+            <a href="/account/" class="underline hover:no-underline">Topupify</a>
+          </div>
+          <div class="float-right">
+            <a href="/logout" class="underline hover:no-underline">Logout</a>
+          </div>
+          <div class="float-right mr-5" id="welcome-message">
+            Welcome, <%= user.name %>
+          </div>
+        </div>
+      <div class="max-w-4xl mx-auto flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 mb-8" role="alert">
+        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+        <p>This is a demo and does not involve real money</p>
+      </div>
+      <div class="max-w-4xl mx-auto rounded overflow-hidden shadow-lg bg-white p-10">
+        <div class="clearfix mb-10">
+          <div class="float-left">
+            <div class="text-sm text-gray-500">
+              All top-ups total
+            </div>
+            <div class="text-3xl">
+              <%= (total / 100).toLocaleString('en-GB', { style: 'currency', currency: 'GBP' }) %>
+            </div>
+          </div>
+          <div class="float-right mt-6">
+            <form action="/admin" method="POST">
+              <div class="clearfix">
+                <div class="float-left">
+                  <input class="shadow appearance-none border rounded w-20 pt-3 pb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline currency mr-3" id="amount" type="number" name="amount" value="1" max="10" pattern="[0-9]*" inputmode="numeric">
+                </div>
+                <div class="float-left">
+                  <input type="submit" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-gray-700 hover:border-gray-500 rounded" type="button" value="Add top-ups" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <% if (topups.length === 0) { %>
+          There are no top-ups in the platform, click <strong>'Add top-ups'</strong> to create some!
+        <% } %>
+        <% if (topups.length) { %>
+          <form action="/admin/batch" method="POST">
+          <% topups.reverse().forEach(function(topup){ %>
+            <div class="p-4 border-t clearfix top-upmobile">
+              <div class="float-left mr-3 text-green-500">
+                <input type="checkbox" id="selected" name="selected" value="<%= topup.id %>">
+              </div>
+              <div class="float-left font-bold font-mono">
+                <%= (topup.amount / 100).toLocaleString('en-GB', { style: 'currency', currency: topup.currency }) %> 
+              </div>
+              <div class="float-right text-gray-500 mobile-date">
+                <%= (new Date(topup.created_at)).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' }) %>
+              </div>
+            </div>
+          <% }) %>
+          <% if (flash) { %>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto mt-10" role="alert">
+              <span class="block sm:inline"><%= flash %></span>
+            </div>
+          <% } %>
+          <input type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-10" type="button" value="Batch pay selected" />
+          </form>
+        <% } %>
+        <% if (batched.length) { %>
+          <div class="mt-10">
+            <div class="text-xl mb-5">Batched payments sent</div>
+            <% if (batchSuccess) { %>
+              <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mb-5" role="alert">
+                <div class="flex">
+                  <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                  <div>
+                    <p class="font-bold">Batch payment sent</p>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          <% batched.reverse().forEach(function(topup){ %>
+            <div class="p-4 border-t clearfix top-upmobile">
+              <div class="float-left mr-3 text-green-500">
+                <input type="checkbox" id="selected" name="selected" value="<%= topup.id %>">
+              </div>
+              <div class="float-left font-bold font-mono line-through">
+                <%= (topup.amount / 100).toLocaleString('en-GB', { style: 'currency', currency: topup.currency }) %> 
+              </div>
+              <div class="float-right text-gray-500 mobile-date">
+                <%= (new Date(topup.created_at)).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' }) %>
+              </div>
+            </div>
+          <% }) %>
+          </div>
+        <% } %>
+      </div>
+      <div class="max-w-4xl mx-auto overflow-hidden pb-8 mt-10 text-gray-600 clearfix">
+        <div class="float-left">
+          Banked.com top-up example, the <a href="https://github.com/banked/example-topup" class="underline hover:no-underline footer-link">source code</a> is released under an MIT license
+        </div>
+        <div class="float-right">
+          <a href="/admin" class="underline hover:no-underline">Super Secret Admin Panel</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      const togglePayment = (e) => {
+        e.preventDefault();
+        const ui = document.getElementById('add-payment-ui')
+        ui.classList.toggle('hidden')
+      }
+
+      const el = document.getElementById('add-payment');
+      el.addEventListener('click', togglePayment)
+    </script>
+  </body>
+</html>

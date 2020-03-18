@@ -1,70 +1,59 @@
 var express = require('express')
 var router = express.Router()
-var Users = require('../db/users')
 var Topups = require('../db/topups')
 
 router.get('/', async function (req, res, next) {
   try {
-    const user = await Users.findBySessionID(req.cookies.topupSessionCookie)
-    const topups = await Topups.findByUserID(user.id)
+    const _topups = await Topups.findByUserID(req.user.id)
+    const accountTopups = _topups.filter((topup) => topup.showInAccount)
     res.render('account', {
-      topups,
-      total: topups.reduce((a, b) => {
+      topups: accountTopups,
+      total: accountTopups.reduce((a, b) => {
         return a + b.amount
       }, 0),
-      user,
+      user: req.user,
       topupState: req.query.topup || ''
     })
   } catch (e) {
-    console.log(e)
-    res.redirect('/register')
+    console.error(e)
+    res.sendStatus(500)
   }
 })
 
 router.get('/top-up', async function (req, res, next) {
   try {
-    const user = await Users.findBySessionID(req.cookies.topupSessionCookie)
     res.render('topup', {
-      user,
+      user: req.user,
       flash: ''
     })
   } catch (e) {
-    console.log(e)
-    res.redirect('/register')
+    console.error(e)
+    res.sendStatus(500)
   }
 })
 
 router.post('/top-up', async function (req, res, next) {
-  try {
-    const user = await Users.findBySessionID(req.cookies.topupSessionCookie)
-    if (!req.body.amount || req.body.amount <= 0) {
-      res.render('topup', {
-        user,
-        flash: 'You need to indicate a amount of money to top up greater than zero'
-      })
-    } else {
-      try {
-        const topup = await Topups.create({
-          amount: req.body.amount * 100,
-          userID: user.id,
-          currency: 'GBP',
-          payer: {
-            name: user.name,
-            email: user.email
-          }
-        })
-        res.redirect(topup.redirect_url)
-      } catch (e) {
-        console.log(e)
-        res.redirect('/account?topup=error')
-      }
-    }
+  if (!req.body.amount || req.body.amount <= 0) {
     res.render('topup', {
-      user
+      user: req.user,
+      flash: 'You need to indicate a amount of money to top up greater than zero'
     })
-  } catch (e) {
-    console.log(e)
-    res.redirect('/register')
+  } else {
+    try {
+      const topup = await Topups.create({
+        amount: req.body.amount * 100,
+        userID: req.user.id,
+        currency: 'GBP',
+        payer: {
+          name: req.user.name,
+          email: req.user.email
+        }
+      })
+      res.redirect(topup.redirect_url)
+    } catch (e) {
+      console.error(e)
+      res.redirect('/account?topup=error')
+    }
   }
 })
 

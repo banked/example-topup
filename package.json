@@ -1,6 +1,6 @@
 {
   "name": "topup-example",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -14,7 +14,7 @@
     "node": "13.x"
   },
   "dependencies": {
-    "@banked/node": "0.0.9",
+    "@banked/node": "0.0.12",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",

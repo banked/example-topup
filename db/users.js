@@ -1,5 +1,11 @@
 const uuid = require('uuid').v4
-var users = []
+
+var users = [{
+  id: 'admin',
+  name: 'Admin',
+  email: 'admin@exmaple.com',
+  sessionID: uuid()
+}]
 
 exports.create = (user) => {
   user.id = users.length + 1

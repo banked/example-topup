@@ -30,6 +30,7 @@ exports.create = async (topup) => {
       topup.state = 'pending'
       topup.created_at = new Date().toString()
       topup.redirect_url = topup.__bankedResponse.data.url
+      topup.showInAccount = true
 
       topups.push(topup)
       resolve(topup)
@@ -37,6 +38,16 @@ exports.create = async (topup) => {
       reject(e)
     }
   })
+}
+
+exports.createAdmin = (topup) => {
+  topup.id = topups.length + 1
+  topup.state = 'pending'
+  topup.created_at = new Date().toString()
+  topup.showInAccount = false
+
+  topups.push(topup)
+  return Promise.resolve(topup)
 }
 
 exports.findByUserID = (userID) => {
@@ -60,4 +71,22 @@ exports.clear = () => {
 exports.deleteByUserID = (userID) => {
   topups = topups.filter((topup) => topup.userID !== userID)
   return Promise.resolve()
+}
+
+exports.createBatch = (batch) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const br = await banked.payments.batch.create(batch)
+      resolve(br)
+    } catch (e) {
+      reject(e)
+    }
+  })
+}
+
+exports.findByID = (id) => {
+  const result = topups.filter((topup) => {
+    return topup.id === parseInt(id, 10)
+  })
+  return Promise.resolve(result)
 }
