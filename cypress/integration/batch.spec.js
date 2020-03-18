@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from
   // failing the test
@@ -33,7 +34,7 @@ describe('Batch', function () {
       .clear()
       .type('3')
       .should('have.value', '3')
-    
+
     cy.contains('Add top-ups').click()
     cy.get('body').find('.top-upmobile').its('length').should('eq', 3)
   })
@@ -44,13 +45,12 @@ describe('Batch', function () {
       .clear()
       .type('3')
       .should('have.value', '3')
-    
+
     cy.contains('Add top-ups').click()
     cy.get('[type="checkbox"]').check()
-    
+
     cy.contains('Batch refund selected').click()
     cy.wait(3000)
     cy.url().should('include', 'natwest')
   })
-
 })
