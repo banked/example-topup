@@ -7,14 +7,16 @@ var logger = require('morgan')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+var authenticate = require('./lib/authenticate')
 
 var indexRouter = require('./routes/index')
 var registerRouter = require('./routes/register')
 var accountRouter = require('./routes/account')
 var logoutRouter = require('./routes/logout')
 var callbackRouter = require('./routes/callback')
-var webhookkRouter = require('./routes/webhook')
+var webhookRouter = require('./routes/webhook')
 var clearRouter = require('./routes/clear')
+var adminRouter = require('./routes/admin')
 
 var app = express()
 
@@ -30,12 +32,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/register', registerRouter)
-app.use('/account', accountRouter)
+app.use('/account', authenticate, accountRouter)
 app.use('/logout', logoutRouter)
 app.use('/success', callbackRouter.success)
 app.use('/error', callbackRouter.error)
-app.use('/webhook', webhookkRouter)
+app.use('/webhook', webhookRouter)
 app.use('/clear', clearRouter)
+app.use('/admin', authenticate, adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -19,6 +19,10 @@
         .mobile-button-spacing {
           width: 100%;
         }
+        .admin-link {
+          float: none;
+          margin-top: 4em;
+        }
       }
     </style>
   </head>
@@ -49,17 +53,22 @@
               </div>
               <div class="text-3xl relative">
                 <span class="absolute mt-1 ml-3 text-gray-600">£</span>
-                <input class="shadow appearance-none border rounded w-full py-2 pr-3 pl-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline currency" id="amount" type="number" name="amount" placeholder="0">
+                <input class="shadow appearance-none border rounded w-full py-2 pr-3 pl-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline currency" id="amount" type="number" name="amount" placeholder="0" pattern="[0-9]*" inputmode="numeric">
               </div>
             </div>
             <div class="float-left mt-6 mobile-button-spacing">
-              <input type="submit" class="bg-gray-900 hover:bg-gray-800 text-white font-bold pt-4 pb-3 px-10 border-b-4 border-black hover:border-gray-900 rounded mt-2 ml-5 mobile-button" type="button" pattern="[0-9]*" inputmode="numeric" value="Top-up with Banked :" />
+              <input type="submit" class="bg-gray-900 hover:bg-gray-800 text-white font-bold pt-4 pb-3 px-10 border-b-4 border-black hover:border-gray-900 rounded mt-2 ml-5 mobile-button" type="button" value="Top-up with Banked :" />
             </div>
           </div>
         </form>
       </div>
       <div class="max-w-4xl mx-auto overflow-hidden pb-8 mt-10 text-gray-600 clearfix">
-        Banked.com top-up example, the <a href="https://github.com/banked/topup-example" class="underline hover:no-underline">source code</a> is released under an MIT license
+        <div class="float-left">
+          Banked.com top-up example, the <a href="https://github.com/banked/example-topup" class="underline hover:no-underline footer-link">source code</a> is released under an MIT license
+        </div>
+        <div class="float-right admin-link">
+          <a href="/admin" class="underline hover:no-underline">Super Secret Admin Panel</a>
+        </div>
       </div>
     </div>
   </body>
