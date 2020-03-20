@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var Topups = require('../db/topups')
 var uuid = require('uuid').v4
+var listProviders = require('../lib/providers')
 
 const render = (res, user, topups, flash, didBatchSucceed) => {
   res.render('admin', {
@@ -12,7 +13,8 @@ const render = (res, user, topups, flash, didBatchSucceed) => {
       return a + b.amount
     }, 0),
     batched: topups.filter((topup) => topup.state === 'batched'),
-    batchSuccess: didBatchSucceed
+    batchSuccess: didBatchSucceed,
+    providers: listProviders()
   })
 }
 
@@ -68,7 +70,7 @@ router.post('/batch', async function (req, res, next) {
         const batchTopup = await Topups.createBatch({
           success_url: `${process.env.BASE_URL}/admin?batch=success`,
           error_url: `${process.env.BASE_URL}/admin?batch=error`,
-          provider_id: process.env.PROVIDER_ID,
+          provider_id: req.body.provider || process.env.PROVIDER_ID,
           currency: 'GBP',
           payees
         })
