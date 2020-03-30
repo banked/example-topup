@@ -36,6 +36,7 @@ There are several environment variables that need to be set on the server to be 
 
 * `BANKED_API_KEY` is your API key from [Banked's Console](https://console.banked.com)
 * `BANKED_API_SECRET` is the secret key from [Banked's Console](https://console.banked.com)
+* `BANKED_CLIENT_KEY` the client key for implementing Banked's embedded checkout
 * `BASE_URL` is the base url of where this site is deployed (e.g. `https://example.com`) and is used for constructing the callback URL's Banked's checkout will redirect to on success or error of the payment
 * `PAYEE_NAME` the name of the bank account payments will be made into
 * `ACCOUNT_NUMBER` is the bank account number the payments will be made into
