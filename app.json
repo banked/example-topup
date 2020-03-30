@@ -12,6 +12,10 @@
       "description": "The Banked API secret generated in the Banked console",
       "required": true
     },
+    "BANKED_CLIENT_KEY": {
+      "description": "The Banked client key used to power the embedded checkout",
+      "required": true
+    },
     "BASE_URL": {
       "description": "The base url of the store, which is used to construct callback URL's Banked will direct to e.g. https://www.example.com/",
       "required": true
