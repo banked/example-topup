@@ -25,6 +25,7 @@
         }
       }
     </style>
+    <script src="https://js.banked.com/v1" data-api-key="<%= clientKey %>" type="text/javascript"></script>
   </head>
   <body class="bg-gray-200">
     <div class="bg-gray-200 h-screen text-gray-700 pt-8 mobile-pad">
@@ -45,6 +46,8 @@
             <span class="block sm:inline"><%= flash %></span>
           </div>
         <% } %>
+
+        <% if (!paymentID) { %>
         <form action="/account/top-up" method="POST">
           <div class="clearfix">
             <div class="float-left">
@@ -61,6 +64,13 @@
             </div>
           </div>
         </form>
+        <% } %>
+
+        <% if (paymentID) { %>
+        <banked-provider-list payment-id="<%= paymentID %>"></banked-provider-list>
+        <banked-pay-button></banked-pay-button>
+        <% } %>
+
       </div>
       <div class="max-w-4xl mx-auto overflow-hidden pb-8 mt-10 text-gray-600 clearfix">
         <div class="float-left">

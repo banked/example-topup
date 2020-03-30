@@ -24,7 +24,9 @@ router.get('/top-up', async function (req, res, next) {
   try {
     res.render('topup', {
       user: req.user,
-      flash: ''
+      flash: '',
+      clientKey: process.env.BANKED_CLIENT_KEY,
+      paymentID: null
     })
   } catch (e) {
     console.error(e)
@@ -49,7 +51,12 @@ router.post('/top-up', async function (req, res, next) {
           email: req.user.email
         }
       })
-      res.redirect(topup.redirect_url)
+      res.render('topup', {
+        user: req.user,
+        flash: '',
+        clientKey: process.env.BANKED_CLIENT_KEY,
+        paymentID: topup.__bankedResponse.data.id
+      })
     } catch (e) {
       console.error(e)
       res.redirect('/account?topup=error')
