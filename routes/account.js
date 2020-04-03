@@ -38,7 +38,8 @@ router.post('/top-up', async function (req, res, next) {
   if (!req.body.amount || req.body.amount <= 0) {
     res.render('topup', {
       user: req.user,
-      flash: 'You need to indicate a amount of money to top up greater than zero'
+      flash: 'You need to indicate a amount of money to top up greater than zero',
+      clientKey: process.env.BANKED_CLIENT_KEY
     })
   } else {
     try {
