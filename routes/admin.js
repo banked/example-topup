@@ -71,6 +71,7 @@ router.post('/batch', async function (req, res, next) {
           success_url: `${process.env.BASE_URL}/admin?batch=success`,
           error_url: `${process.env.BASE_URL}/admin?batch=error`,
           provider_id: req.body.provider || process.env.PROVIDER_ID,
+          bank_account_id: process.env.BANK_ACCOUNT_ID,
           currency: 'GBP',
           payees
         })
