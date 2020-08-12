@@ -39,6 +39,14 @@
     "CLEAR_TOKEN": {
       "description": "The token used for authenticating requests to clear storage",
       "required": true
+    },
+    "PROVIDER_ID": {
+      "description": "The detault provider to used with batch payments, if nonw is specific in the UI",
+      "required": true
+    },
+    "BANK_ACCOUNT_ID": {
+      "description": "The account ID of the bank account connected in the Banked console",
+      "required": true
     }
   }
 }
