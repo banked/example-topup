@@ -43,6 +43,6 @@ There are several environment variables that need to be set on the server to be 
 * `SORT_CODE` is the sort-code of the account the payments will be made into
 * `SIGNATURE_KEY` is the signature key setup when configuring your webhooks in [Banked's Console](https://console.banked.com)
 * `CLEAR_TOKEN` the token the app will use to verify permissions to clear it's storage
-
+* `BANK_ACCOUNT_ID` the ID of the connected bank account in Banked (needed for batch payments demo)
 
 
