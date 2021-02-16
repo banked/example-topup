@@ -20,13 +20,16 @@ $ npm install
 
 # Launch server
 $ npm run start
+
+# serve with hot reload at localhost:3000
+$ npm run dev
 ```
 
 This example implements the receiving and verification of [Banked's Webhooks](https://console.banked.com/test/webhooks). Which you'll need to setup before deploying the store or for topups to ever leave a `pending` state.
 
 This example also implements a `/clear?token=*` route that enables you to purge all users and top-ups. The token in the query string is matched against the `CLEAR_TOKEN` environment variable.
 
-## Deploying the popup example
+## Deploying the topup example
 
 The store is automatically deployed to [Heroku](https://banked-example-store.herokuapp.com/) when a commit is pushed to the master branch.
 
@@ -42,7 +45,7 @@ There are several environment variables that need to be set on the server to be 
 * `ACCOUNT_NUMBER` is the bank account number the payments will be made into
 * `SORT_CODE` is the sort-code of the account the payments will be made into
 * `SIGNATURE_KEY` is the signature key setup when configuring your webhooks in [Banked's Console](https://console.banked.com)
-* `CLEAR_TOKEN` the token the app will use to verify permissions to clear it's storage
+* `CLEAR_TOKEN` the token the app will use to verify permissions to clear its storage
 * `BANK_ACCOUNT_ID` the ID of the connected bank account in Banked (needed for batch payments demo)
 
 
