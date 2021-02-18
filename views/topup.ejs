@@ -25,7 +25,7 @@
         }
       }
     </style>
-    <script src="https://js.banked.com/v1" data-api-key="<%= clientKey %>" type="text/javascript"></script>
+    <script src="https://js.banked.com/v3" data-api-key="<%= clientKey %>" type="text/javascript"></script>
   </head>
   <body class="bg-gray-200">
     <div class="bg-gray-200 h-screen text-gray-700 pt-8 mobile-pad">
@@ -67,11 +67,7 @@
         <% } %>
 
         <% if (paymentID) { %>
-        <banked-provider-list payment-id="<%= paymentID %>"></banked-provider-list>
-        <br>
-        <banked-pay-button></banked-pay-button>
-        <% } %>
-
+        <banked-checkout api-key="<%= clientKey %>" id="checkout" payment-id="<%= paymentID %>"></banked-checkout>        <% } %>
       </div>
       <div class="max-w-4xl mx-auto overflow-hidden pb-8 mt-10 text-gray-600 clearfix">
         <div class="float-left">
