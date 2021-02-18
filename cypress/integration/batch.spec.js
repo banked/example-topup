@@ -22,35 +22,4 @@ describe('Batch', function () {
 
     cy.url().should('include', '/account')
   })
-
-  it('should be on an admin page', function () {
-    cy.contains('Super Secret Admin Panel').click()
-    cy.url().should('include', '/admin')
-  })
-
-  it('should allow adding of dummy topups', function () {
-    cy.visit('http://localhost:3000/admin')
-    cy.get('#amount')
-      .clear()
-      .type('3')
-      .should('have.value', '3')
-
-    cy.contains('Add top-ups').click()
-    cy.get('body').find('.top-upmobile').its('length').should('eq', 3)
-  })
-
-  it('should allow the payment of a subset topups on the page', function () {
-    cy.visit('http://localhost:3000/admin')
-    cy.get('#amount')
-      .clear()
-      .type('3')
-      .should('have.value', '3')
-
-    cy.contains('Add top-ups').click()
-    cy.get('[type="checkbox"]').check()
-
-    cy.contains('Batch refund selected').click()
-    cy.wait(3000)
-    cy.url().should('include', 'natwest')
-  })
 })

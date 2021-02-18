@@ -40,16 +40,6 @@ exports.create = async (topup) => {
   })
 }
 
-exports.createAdmin = (topup) => {
-  topup.id = topups.length + 1
-  topup.state = 'pending'
-  topup.created_at = new Date().toString()
-  topup.showInAccount = false
-
-  topups.push(topup)
-  return Promise.resolve(topup)
-}
-
 exports.findByUserID = (userID) => {
   const result = topups.filter((topup) => {
     return topup.userID === userID

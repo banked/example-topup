@@ -6,7 +6,7 @@
 
 ![](./screenshot.png)
 
-This dummy top-up example allows users to create an account and 'top it up' with arbitrary amounts of funds. It also contains a secret (🤫) admin UI that can be used to make batch payments.
+This dummy top-up example allows users to create an account and 'top it up' with arbitrary amounts of funds. 
 
 If you want to see the Banked specific parts checkout `./db/topups.js` for creating the checkout URL on the backend that the stores redirects people too and `./routes/webhook.js` for an example of how to verify Banked's webhooks.
 

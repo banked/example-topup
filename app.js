@@ -16,7 +16,6 @@ var logoutRouter = require('./routes/logout')
 var callbackRouter = require('./routes/callback')
 var webhookRouter = require('./routes/webhook')
 var clearRouter = require('./routes/clear')
-var adminRouter = require('./routes/admin')
 
 var app = express()
 
@@ -38,7 +37,6 @@ app.use('/success', callbackRouter.success)
 app.use('/error', callbackRouter.error)
 app.use('/webhook', webhookRouter)
 app.use('/clear', clearRouter)
-app.use('/admin', authenticate, adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
