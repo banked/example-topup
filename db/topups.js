@@ -31,6 +31,7 @@ exports.create = async (topup) => {
       topup.created_at = new Date().toString()
       topup.redirect_url = topup.__bankedResponse.data.url
       topup.showInAccount = true
+      topup.countInTotal = true
 
       topups.push(topup)
       resolve(topup)
@@ -39,6 +40,7 @@ exports.create = async (topup) => {
     }
   })
 }
+
 
 exports.findByUserID = (userID) => {
   const result = topups.filter((topup) => {
@@ -50,6 +52,12 @@ exports.findByUserID = (userID) => {
 exports.updateStateByID = (topupID, state) => {
   const topup = topups[topupID - 1]
   if (topup) topup.state = state
+  return Promise.resolve(topup)
+}
+
+exports.updateCountInTotalByID = (topupID, countInTotal) => {
+  const topup = topups[topupID - 1]
+  if (topup) topup.countInTotal = countInTotal
   return Promise.resolve(topup)
 }
 
