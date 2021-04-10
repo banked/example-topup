@@ -6,9 +6,10 @@ router.get('/', async function (req, res, next) {
   try {
     const _topups = await Topups.findByUserID(req.user.id)
     const accountTopups = _topups.filter((topup) => topup.showInAccount)
+    const successfulTopups = _topups.filter((topup) => topup.countInTotal)
     res.render('account', {
       topups: accountTopups,
-      total: accountTopups.reduce((a, b) => {
+      total: successfulTopups.reduce((a, b) => {
         return a + b.amount
       }, 0),
       user: req.user,

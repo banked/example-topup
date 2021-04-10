@@ -16,6 +16,7 @@ router.post('/', async function (req, res, next) {
     }
     if (req.body.state === 'failed' && verification.isValid) {
       await Topups.updateStateByID(topupID, 'failed')
+      await Topups.updateCountInTotalByID(topupID, false)
     }
     res.sendStatus(200)
   } catch (e) {
