@@ -2,7 +2,7 @@
   "name": "Banked's Topup Example",
   "description": "An [Express.js](https://expressjs.com/) top-up example demonstrating the Banked API",
   "repository": "https://github.com/banked/example-topup",
-  "website": "https://banked-example-topup.herokuapp.com/",
+  "website": "https://topup.banked-demo.app/",
   "env": {
     "BANKED_API_KEY": {
       "description": "Your Banked API key generated in the Banked console",

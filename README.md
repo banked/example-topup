@@ -2,7 +2,7 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/banked/example-topup)
 
-> An [Express.js](https://expressjs.com/) top-up example demonstrating the Banked API that is currently [deployed to Heroku](https://banked-example-topup.herokuapp.com/)
+> An [Express.js](https://expressjs.com/) top-up example demonstrating the Banked API that is currently [deployed to Heroku](https://topup.banked-demo.app/)
 
 ![](./screenshot.png)
 
@@ -31,7 +31,7 @@ This example also implements a `/clear?token=*` route that enables you to purge 
 
 ## Deploying the topup example
 
-The store is automatically deployed to [Heroku](https://banked-example-store.herokuapp.com/) when a commit is pushed to the master branch.
+The store is automatically deployed to [Heroku](https://topup.banked-demo.app/) when a commit is pushed to the master branch.
 
 ### Environment variables
 
